@@ -1,0 +1,25 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "target": "es6",
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@shared": ["shared"],
+      "@graphql": ["src/graphql/"],
+      "@config": ["src/config/"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.json"],
+  "exclude": ["node_modules"]
+}
