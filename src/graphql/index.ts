@@ -1,9 +1,9 @@
 import { Subjects } from "@shared";
 import { typeDefs } from "./schema";
 import { PubSub } from "graphql-subscriptions";
-import countQuery from "./event/query/resolvers";
-import countMutation from "./event/mutation/resolvers";
-import countSubscription from "./event/subscription/resolvers";
+import countQuery from "./slipAndFall/query/resolvers";
+import countMutation from "./slipAndFall/mutation/resolvers";
+import countSubscription from "./slipAndFall/subscription/resolvers";
 
 export const database: any = [];
 export const pubsub = new PubSub();
