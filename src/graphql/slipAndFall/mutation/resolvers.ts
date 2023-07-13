@@ -11,6 +11,9 @@ const resolvers: {
         const slipAndFall = await SlipAndFallModel.create({
           ...body,
           widgetId: new Types.ObjectId(),
+          deviceId: new Types.ObjectId(),
+          channel: Math.floor(Math.random() * 9),
+          date: new Date(),
         });
         pubsub.publish(SLIP_AND_FALL, { newSlipAndFall: slipAndFall });
         return slipAndFall;

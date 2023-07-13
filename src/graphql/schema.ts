@@ -8,10 +8,7 @@ export const typeDefs = gql`
   }
 
   input SlipAndFallInput {
-    deviceId: ID!
-    channel: Int
     ruleName: String!
-    date: String
   }
 
   type SlipAndFall {
@@ -25,13 +22,13 @@ export const typeDefs = gql`
   }
 
   type Query {
-    slipAndFall(slipAndFallId: ID!): SlipAndFall!
+    slipAndFall(slipAndFallId: ID!): SlipAndFall
     slipAndFalls(
       criteria: SlipAndFallCriteria
       sortProperty: String
       offset: Int
       limit: Int
-    ): [SlipAndFall!]!
+    ): [SlipAndFall]!
   }
 
   type Mutation {
