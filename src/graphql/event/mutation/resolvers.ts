@@ -1,21 +1,29 @@
-import { messages } from "../../../model";
-import { created } from "../../../message/publishers";
+import { Types } from "mongoose";
+import { SlipAndFallModel } from "@models";
 import { pubsub, SLIP_AND_FALL } from "../../index";
 
 const resolvers: {
   Mutation: any;
 } = {
   Mutation: {
-    postDeviceEvent: async (_: any, { content }: any) => {
+    postSlipAndFall: async (_: any, { body }: any) => {
       try {
-        const id = messages.length.toString();
-        const message = { id, content };
-        messages.push(message);
-
-        await created(_, message);
-        pubsub.publish(SLIP_AND_FALL, { newDeviceEvent: message });
-
-        return id;
+        const slipAndFall = await SlipAndFallModel.create({
+          ...body,
+          widgetId: new Types.ObjectId(),
+        });
+        pubsub.publish(SLIP_AND_FALL, { newSlipAndFall: slipAndFall });
+        return slipAndFall;
+      } catch (error) {
+        throw error;
+      }
+    },
+    patchSlipAndFall: async (_: any, { slipAndFallId }: any) => {
+      try {
+        await SlipAndFallModel.findByIdAndUpdate(slipAndFallId, {
+          confirmed: true,
+        });
+        return true;
       } catch (error) {
         throw error;
       }

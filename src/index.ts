@@ -1,5 +1,7 @@
+import mongoose from "mongoose";
 import { server } from "./server";
 import { natsWrapper } from "./nats-wrapper";
+import { dbConnection } from "@databases";
 import * as EventListener from "./message/listeners";
 import {
   PORT,
@@ -55,6 +57,9 @@ const start = async () => {
       process.on("SIGTERM", () => natsWrapper.client.close());
 
       new EventListener.Event_created(natsWrapper).listen();
+
+      mongoose.connect(dbConnection.url, dbConnection.options);
+      console.log("✓ connected to MongoDB");
     }
   } catch (error) {
     console.error(error);

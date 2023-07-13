@@ -16,8 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@shared": ["shared"],
+      "@config": ["src/config/"],
       "@graphql": ["src/graphql/"],
-      "@config": ["src/config/"]
+      "@models": ["src/models"],
+      "@databases": ["src/databases/"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.json"],

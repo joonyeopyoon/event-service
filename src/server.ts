@@ -1,13 +1,12 @@
 import express from "express";
 import { createServer } from "http";
 import { graphqlSchema } from "./graphql";
+import { connect, StringCodec } from "nats";
 import { execute, subscribe } from "graphql";
 import { ApolloServer } from "apollo-server-express";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-
-import { connect, StringCodec } from "nats";
 
 const app = express();
 const httpServer = createServer(app);
@@ -40,6 +39,7 @@ export const server = async (port: any) => {
       );
     });
 
+    /** for "nats" start */
     const nc = await connect();
     const sc = StringCodec();
     const sub = nc.subscribe("meta.>");
@@ -53,6 +53,7 @@ export const server = async (port: any) => {
       console.log(type, mac, dateTime, { data });
       console.log("log-20230711-end");
     }
+    /** for "nats" end */
   } catch (error) {
     await apollo.stop();
     console.error(error);

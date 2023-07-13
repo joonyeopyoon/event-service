@@ -4,7 +4,7 @@ const resolvers: {
   Subscription: any;
 } = {
   Subscription: {
-    newDeviceEvent: {
+    newSlipAndFall: {
       subscribe: () => pubsub.asyncIterator(SLIP_AND_FALL),
     },
   },
