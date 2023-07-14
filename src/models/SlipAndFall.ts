@@ -7,6 +7,11 @@ const slipAndFallSchema = new Schema<any>(
     deviceId: { type: Schema.Types.ObjectId, required: true, index: true },
     channel: { type: Number, required: true },
     ruleName: { type: String, required: true },
+    thumbnail: {
+      type: String,
+      required: true,
+      default: "thumbnails/default.png",
+    },
     confirmed: { type: Boolean, default: false },
     date: { type: Date },
   },

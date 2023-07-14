@@ -17,6 +17,7 @@ export const typeDefs = gql`
     deviceId: ID!
     channel: Int
     ruleName: String!
+    thumbnail: String!
     confirmed: Boolean!
     date: String
   }
